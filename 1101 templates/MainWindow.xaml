@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:_1101_templates"
         mc:Ignorable="d"
         Title="Authentication" Height="185" Width="300"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize" Background="#0C1228">
     <Window.Resources>
-        <ControlTemplate x:Key="LogInButtonTemplate" TargetType="{x:Type Button}">
+        <ControlTemplate x:Key="LogInButtonTemplate" TargetType="Button">
             <Border
             Name="Border"
             Background="#6FD5AD"
             CornerRadius="5"
-            TextBlock.Foreground="White"
+            TextBlock.Foreground="#0C1228"
             TextBlock.FontWeight="Bold">
                 <Grid>
                     <ContentPresenter Margin="{TemplateBinding Padding}"></ContentPresenter>
@@ -30,13 +30,13 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
 
-        <ControlTemplate x:Key="CancelButtonTemplate" TargetType="{x:Type Button}">
+        <ControlTemplate x:Key="CancelButtonTemplate" TargetType="Button">
             <Border
-     Name="Border"
-     Background="#BF4B66"
-     CornerRadius="5"
-     TextBlock.Foreground="White"
-     TextBlock.FontWeight="Bold">
+            Name="Border"
+            Background="#BF4B66"
+            CornerRadius="5"
+            TextBlock.Foreground="#0C1228"
+            TextBlock.FontWeight="Bold">
                 <Grid>
                     <ContentPresenter Margin="{TemplateBinding Padding}"></ContentPresenter>
                 </Grid>
@@ -51,13 +51,35 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+
+        <ControlTemplate x:Key="TextBoxTemplate" TargetType="TextBox">
+            <Border Name="TextBoxBorder"
+                BorderThickness="0"
+                 CornerRadius="5"
+                Background="#ACB6D5"
+                TextBlock.FontWeight="Bold"
+                TextBlock.FontSize="12">
+                <TextBox Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Text, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" Background="Transparent" Foreground="#0C1228" />
+            </Border>
+        </ControlTemplate>
+
+        <Style x:Key="TextStyle">
+
+            <Style.Setters>
+                <Setter Property="Control.FontFamily" Value="Verdana" />
+                <Setter Property="Control.FontSize" Value="12" />
+                <Setter Property="ItemsControl.Foreground" Value="#9FD9FF"/>
+            </Style.Setters>
+        </Style>
+
+
     </Window.Resources>
-    <Grid Margin="0,0,0,3" >
+    <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="76*"/>
-            <ColumnDefinition Width="74*"/>
-            <ColumnDefinition Width="75*"/>
-            <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="27*"/>
+            <ColumnDefinition Width="24*"/>
+            <ColumnDefinition Width="24*"/>
+            <ColumnDefinition Width="25*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="44*"/>
@@ -65,12 +87,12 @@
             <RowDefinition Height="40*"/>
             <RowDefinition Height="48*"/>
         </Grid.RowDefinitions>
-        <Label  Grid.Row="0" Grid.Column="0" Content="Username:" FontSize="12" Margin="5,5,5,5" Padding="5"/>
-        <Label  Grid.Row="1" Grid.Column="0" Content="Password:" FontSize="12" Margin="5,5,5,5" Padding="5"/>
-        <TextBox Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="1" Margin="5,5,5,5"/>
-        <TextBox Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="1" Margin="5,5,5,5"/>
+        <Label Style="{StaticResource TextStyle}" Grid.Row="0" Grid.Column="0" Content="Username" Margin="4,4,4,4" Padding="4"/>
+        <Label Style="{StaticResource TextStyle}" Grid.Row="1" Grid.Column="0" Content="Password" Margin="4,4,4,4" Padding="4"/>
+        <TextBox Template="{StaticResource TextBoxTemplate}" Grid.ColumnSpan="3" Grid.Row="0" Grid.Column="1" Margin="5,5,5,5"/>
+        <TextBox Template="{StaticResource TextBoxTemplate}" Grid.ColumnSpan="3" Grid.Row="1" Grid.Column="1" Margin="5,5,5,5" />
         <Button Template="{StaticResource LogInButtonTemplate}" Grid.Row="3" Grid.Column="1" Margin="5,5,5,5" Padding="5" Content="Log in" FontSize="12"/>
         <Button  Template="{StaticResource CancelButtonTemplate}" Grid.Row="3" Grid.Column="2" Margin="5,5,5,5" Padding="5" Content="Cancel" FontSize="12"/>
-        <CheckBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Content="Remember me" FontSize="12" Margin="5,5,5,5"/>
+        <CheckBox Style="{StaticResource TextStyle}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Content="Remember me" FontSize="12" Margin="5,5,5,5"/>
     </Grid>
 </Window>
